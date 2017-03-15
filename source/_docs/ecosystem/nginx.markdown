@@ -56,7 +56,9 @@ sudo openssl dhparam -out dhparams.pem 2048
 
 ### {% linkable_title 5. Install configuration file in nginx. %}
 
-Create a new file `/etc/nginx/sites-available/hass` and copy the configuration file at the bottom of the page into it.
+Go to /etc/nginx open the config file named "nginx.conf" and under the http label insert the code at the bottom of the page named "nginx.conf"
+
+Then create a new file `/etc/nginx/sites-available/hass` and copy the configuration file at the bottom of the page into it.
 
 ### {% linkable_title 6. Enable the Home Assistant configuration. %}
 
@@ -75,15 +77,18 @@ Double check this configuration to ensure all settings are correct and start ngi
 
 Forward ports 443 and 80 to your server on your router. Do not forward port 8123.
 
-### {% linkable_title NGINX Config %}
+### {% linkable_title NGINX.conf %}
 
 ```
-http {
     map $http_upgrade $connection_upgrade {
         default upgrade;
         ''      close;
     }
+```
 
+### {% linkable_title Config data for hass file %}
+
+```
     server {
         # Update this line to be your domain
         server_name example.com;
@@ -130,5 +135,4 @@ http {
             proxy_set_header Connection $connection_upgrade;
         }
     }
-}
 ```
